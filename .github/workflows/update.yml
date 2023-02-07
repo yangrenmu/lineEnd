@@ -2,8 +2,9 @@ name: update data
 
 # 触发任务，后面改为定时任务
 on:
-  schedule:
-    - cron: '0 0 0 ? * MON'
+  [push]
+  # schedule:
+  # - cron: '0 0 0 ? * MON'
 
 # 系统环境
 jobs:
@@ -28,7 +29,6 @@ jobs:
         run: |
           git config --global user.email 1163393838@qq.com
           git config --global user.name rreenn
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add .
           git commit -m "update by github action"
           git push origin main
