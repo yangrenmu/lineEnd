@@ -1,7 +1,7 @@
 name: update data
 
 # 触发任务，后面改为定时任务
-on: [pull_request]
+on: [push]
 
 # 系统环境
 jobs:
