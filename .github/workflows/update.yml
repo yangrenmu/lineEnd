@@ -10,12 +10,12 @@ jobs:
   steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+      with:
+        node-version: '16'
 
     - name: install
-    # 多条命令使用 | 换行
-      run: | 
+      # 多条命令使用 | 换行
+      run: |
         npm i
         node --loader ts-node/esm ./spider/index.ts
     - name: commit
@@ -25,5 +25,5 @@ jobs:
         git add .
         git commit -m "update by github action"
         git push origin main
-    
+
 #
