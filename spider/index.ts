@@ -60,7 +60,7 @@ function getFirstData(content: string): Data {
   const nameStr = nameNumArr[0];
   const numStr = nameNumArr[1]?.split('，')[0];
   const numArr = numStr?.split('、');
-  nameStr.split('、').forEach((v: string, index: number) => {
+  nameStr?.split('、')?.forEach((v: string, index: number) => {
     const name = v.split('类')[0];
     const keyName = Type[name as keyof typeof Type];
     if (keyName) {
@@ -72,12 +72,17 @@ function getFirstData(content: string): Data {
 
 function getSecondData(content: string): Data {
   const data: Data = {};
-  const firstStr = content.split('%；')[1];
-  const nameNumArr = firstStr?.split('分别为');
+  const firstStr = content.split('；')[1];
+  let nameNumArr = firstStr?.split('分别为');
+  if (nameNumArr.length < 2) {
+    nameNumArr = firstStr?.split('指数为');
+  }
+
   const nameStr = nameNumArr[0];
   const numStr = nameNumArr[1]?.split('，')[0];
   const numArr = numStr?.split('、');
-  nameStr.split('、').forEach((v: string, index: number) => {
+
+  nameStr?.split('、')?.forEach((v: string, index: number) => {
     const name = v.split('类')[0];
     const keyName = Type[name as keyof typeof Type];
     if (keyName) {
@@ -165,7 +170,7 @@ const crawl = new Crawler({
 console.log(chalk.green('start...'));
 
 function medicineSpider() {
-  crawl.queue(domain);
+  // crawl.queue(domain);
 }
 
 medicineSpider();

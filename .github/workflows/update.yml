@@ -1,7 +1,9 @@
 name: update data
 
 # 触发任务，后面改为定时任务
-on: [push]
+on:
+  schedule:
+    - cron: '0 0 0 ? * MON'
 
 # 系统环境
 jobs:
