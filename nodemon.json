@@ -1,0 +1,9 @@
+{
+  "restartable": "rs",
+  "verbose": true,
+  "watch": ["spider/"],
+  "ignore": ["test/*.spec.ts"],
+  "delay": "1000",
+  "exec": "node --loader ts-node/esm ./spider/index.ts",
+  "ext": "ts"
+}
