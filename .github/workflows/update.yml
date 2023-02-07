@@ -1,7 +1,7 @@
 name: update data
 
 # 触发任务，后面改为定时任务
-on: [push]
+on: [pupull_requestll]
 
 # 系统环境
 jobs:
@@ -12,7 +12,6 @@ jobs:
     uses: actions/setup-node@v3
     with:
       node-version: '16'
-
     - name: install
       # 多条命令使用 | 换行
       run: |
