@@ -4,6 +4,6 @@
   "watch": ["spider/"],
   "ignore": ["test/*.spec.ts"],
   "delay": "1000",
-  "exec": "node --loader ts-node/esm ./spider/index.ts",
+  "exec": "ts-node spider/index.ts",
   "ext": "ts"
 }

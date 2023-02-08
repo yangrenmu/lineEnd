@@ -1,6 +1,5 @@
 // const Crawler = require('crawler');
 import Crawler from 'crawler';
-import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 
@@ -51,7 +50,7 @@ const Type: KeyType = {
 };
 
 const domain = 'https://www.ndrc.gov.cn/fgsj/shjgjgzs/cdzy/';
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 function getFirstData(content: string): Data {
   const data: Data = {};
@@ -114,7 +113,6 @@ const crawlInfo = new Crawler({
     done: () => void
   ) => {
     if (error) {
-      console.log(chalk.red('crawlInfo error: ', error));
     } else {
       const $ = res.$;
       const name = $('.article_title')?.text()?.split('份')[0];
@@ -122,16 +120,13 @@ const crawlInfo = new Crawler({
       let data: Data = {};
       data = getData(content);
       data.total = getTotal(content);
-      // console.log(chalk.green('-------------- data: --------------'), data);
       try {
         fs.writeFileSync(
           path.join(__dirname, 'data', `${name}.json`),
           JSON.stringify(data, null, 2)
         );
-        console.log(chalk.green(`save ${name} data success.`));
-      } catch (error) {
-        console.log(chalk.red(`save ${name} data error:`, error));
-      }
+        console.log('save data success');
+      } catch (error) {}
     }
     done();
   },
@@ -144,7 +139,7 @@ const crawl = new Crawler({
     done: () => void
   ) => {
     if (error) {
-      console.log(chalk.red('crawl error: ', error));
+      // console.log(chalk.red('crawl error: ', error));
     } else {
       const $ = res.$;
       const ul = $('.u-list');
@@ -167,10 +162,10 @@ const crawl = new Crawler({
   },
 });
 
-console.log(chalk.green('start...'));
+// console.log(chalk.green('start...'));
 
 function medicineSpider() {
-  // crawl.queue(domain);
+  crawl.queue(domain);
 }
 
 medicineSpider();
